@@ -17,12 +17,12 @@ public class Main implements UserInput {
                 case 1:
                     users.add();
                     break;
-
                 case 2: 
                     users.list();
-
+                    break;
                 case 4: 
                     users.remove();
+                    break;
                 case 0:
                     break loop;
                 default:

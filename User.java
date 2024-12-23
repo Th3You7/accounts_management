@@ -14,4 +14,10 @@ public class User extends Person {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        
+        return super.getName().toUpperCase() + " => Roles: " + getRole().toString();
+    }
+
 }

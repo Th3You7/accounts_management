@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class DB implements DBOperations, UserInput {
     private final ArrayList<User> DB = new ArrayList<>();
@@ -12,12 +13,13 @@ public class DB implements DBOperations, UserInput {
         String name = scan.nextLine();
         System.out.println("Enter user age: ");
         int age = handleUserInputMismatch();
+        // gender selection
         System.out.println("Select user gender: ");
-        // TODO: list user gender
-        int genderIndex = handleUserInputMismatch();
+        IntStream.range(0, GenderConstants.values().length).forEach(i -> System.out.println(i+1 + "- " + GenderConstants.values()[i]));
+        int genderIndex = handleUserListItemSelection(GenderConstants.values().length);
+        // role selection
         System.out.println("Select user role: ");
-        // TODO: list user role
-
+        IntStream.range(0, RolesConstant.values().length).forEach(i -> System.out.println(i+1 + "- " + RolesConstant.values()[i]));
         int roleIndex = handleUserListItemSelection(RolesConstant.values().length);
 
         // create new role
@@ -34,13 +36,13 @@ public class DB implements DBOperations, UserInput {
     public void list() {
        // if no book stored
         if(DB.isEmpty()) {
-            System.out.println(ColorsConstant.ANSI_PURPLE + "No book stored" + ColorsConstant.ANSI_RESET);
+            System.out.println(ColorsConstant.ANSI_PURPLE + "No user stored" + ColorsConstant.ANSI_RESET);
             System.out.println();
             return;
         }
         // list books
-        DB.stream().forEach(user -> System.out.println(user));
-
+        // DB.stream().forEach(user -> System.out.println(user));
+        IntStream.range(0, DB.size()).forEach(i -> System.out.println(i+1 + "- " + DB.get(i)));
         System.out.println();
     }
 
