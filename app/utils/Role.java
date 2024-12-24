@@ -1,19 +1,21 @@
+package utils;
 
+import constants.Roles;
 import java.util.ArrayList;
 
 public class Role {
-    private ArrayList<RolesConstant> roles = new ArrayList<>();
+    private ArrayList<Roles> roles = new ArrayList<>();
     private String str;
     
-    public Role(RolesConstant role) {
+    public Role(Roles role) {
         this.roles.add(role);
     }
 
-    public ArrayList<RolesConstant> getRoles() {
+    public ArrayList<Roles> getRoles() {
         return roles;
     }
 
-    public void setRoles(ArrayList<RolesConstant> roles) {
+    public void setRoles(ArrayList<Roles> roles) {
         this.roles = roles;
     }    
 

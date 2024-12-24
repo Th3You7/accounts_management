@@ -1,8 +1,13 @@
+package interfaces;
 
+import constants.Colors;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-interface UserInput {
+
+
+
+public interface UserInput {
     Scanner scan = new Scanner(System.in);
     // handle mismatch exception
     default  int handleUserInputMismatch() {
@@ -14,7 +19,7 @@ interface UserInput {
                 break;
             } catch (InputMismatchException e) {
                 scan.nextLine();
-                System.err.println(ColorsConstant.ANSI_RED + "Invalid Input!" + ColorsConstant.ANSI_RESET);
+                System.err.println(Colors.ANSI_RED + "Invalid Input!" + Colors.ANSI_RESET);
             }
         }
 
@@ -26,7 +31,7 @@ interface UserInput {
         while (true) {
             input = scan.nextLine().charAt(0);
             if(input != 'Y' && input != 'y' && input != 'N' && input != 'n'){
-                System.err.println(ColorsConstant.ANSI_RED + "Invalid Input!" + ColorsConstant.ANSI_RESET);
+                System.err.println(Colors.ANSI_RED + "Invalid Input!" + Colors.ANSI_RESET);
                 continue;
             }
 
@@ -41,7 +46,7 @@ interface UserInput {
         while (true) { 
             input = handleUserInputMismatch();
             if(input > size || input <= 0 ) {
-                System.err.println(ColorsConstant.ANSI_RED + "Invalid Input!" + ColorsConstant.ANSI_RESET);
+                System.err.println(Colors.ANSI_RED + "Invalid Input!" + Colors.ANSI_RESET);
                 continue;
             }
             break;
@@ -54,7 +59,7 @@ interface UserInput {
         while (true) { 
             input = handleUserInputMismatch();
             if(input > size || input < 0 ) {
-                System.err.println(ColorsConstant.ANSI_RED + "Invalid Input!" + ColorsConstant.ANSI_RESET);
+                System.err.println(Colors.ANSI_RED + "Invalid Input!" + Colors.ANSI_RESET);
                 continue;
             }
             break;

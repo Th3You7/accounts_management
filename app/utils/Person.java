@@ -1,9 +1,13 @@
+package utils;
+
+import constants.Gender;
+
 public class Person {
     private String name;
     private int age;
-    private GenderConstants gender;
+    private Gender gender;
 
-    public Person (String name, int age, GenderConstants gender) {
+    public Person (String name, int age, Gender gender) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -17,7 +21,7 @@ public class Person {
         return age;
     }
 
-    public GenderConstants getGender() {
+    public Gender getGender() {
         return gender;
     }
 
@@ -30,7 +34,7 @@ public class Person {
     }
 
 
-    public void setGender(GenderConstants gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

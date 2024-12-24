@@ -1,7 +1,11 @@
+package utils;
+
+import constants.Gender;
+
 public class User extends Person {
     Role role;
 
-    public User(String name, int age, GenderConstants gender, Role role) {
+    public User(String name, int age, Gender gender, Role role) {
         super(name, age, gender);
         this.role = role;
     }
