@@ -1,8 +1,10 @@
 package interfaces;
 
 import constants.Colors;
+import constants.Patterns;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 
 
 
@@ -64,6 +66,22 @@ public interface UserInput {
             }
             break;
         }
+        return input;
+    }
+
+    default String handleEmail() {
+        String input;
+        while (true) {
+            input = scan.nextLine();
+            Matcher matcher = Patterns.VALID_EMAIL_ADDRESS_REGEX.matcher(input);
+
+            if(!matcher.matches()) {
+                System.err.println(Colors.ANSI_RED + "Invalid email!" + Colors.ANSI_RESET);
+                continue;
+            }
+            break;
+        }
+
         return input;
     }
 }

@@ -1,29 +1,25 @@
 package utils;
 
 import constants.Roles;
-import java.util.ArrayList;
 
 public class Role {
-    private ArrayList<Roles> roles = new ArrayList<>();
-    private String str;
+    private Roles role;
     
     public Role(Roles role) {
-        this.roles.add(role);
+        this.role = role;
     }
 
-    public ArrayList<Roles> getRoles() {
-        return roles;
+    public Roles getRoles() {
+        return role;
     }
 
-    public void setRoles(ArrayList<Roles> roles) {
-        this.roles = roles;
+    public void setRoles(Roles role) {
+        this.role = role;
     }    
 
     @Override
     public String toString() {
-        str = "[";
-        roles.forEach(role -> str =  roles.indexOf(role) == roles.size() - 1 ? str  + role + "]" :  role + ", ");
-        return str;
+        return role.toString().toUpperCase();
     }
 
     

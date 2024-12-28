@@ -26,10 +26,16 @@ public class Accounts implements AccountsServices, UserInput {
         IntStream.range(0, Roles.values().length).forEach(i -> System.out.println(i+1 + "- " + Roles.values()[i]));
         int roleIndex = handleUserListItemSelection(Roles.values().length);
 
+        // email
+        System.out.println("Enter user email: ");
+        String email = handleEmail();
+        // password
+        System.out.println("Enter user password: ");
+        String password = scan.nextLine();
         // create new role
         Role role = new Role(Roles.values()[roleIndex-1]);
         // create new user
-        User user = new User(name, age, Gender.values()[genderIndex-1], role);
+        User user = new User(name, age, Gender.values()[genderIndex-1], email, password,role);
         // savce new user
         DB.add(user);
         System.out.println(Colors.ANSI_GREEN + "User added Succefully" + Colors.ANSI_RESET);
@@ -56,6 +62,8 @@ public class Accounts implements AccountsServices, UserInput {
         char editName; // n/N => No, y/Y => Yes
         char editAge; // n/N => No, y/Y => Yes
         char editRole; // n/N => No, y/Y => Yes
+        char editEmail;
+        char editPassword;
 
 
         // if no user stored
@@ -100,16 +108,36 @@ public class Accounts implements AccountsServices, UserInput {
          System.out.println("=> Edit role ? (" + user.getRole() + ") (y/Y: Yes, n/N: No)");
          editRole = handleUserYesNoSelection();
          if(editAge == 'y' || editAge == 'Y') {
+            ArrayList<Role> roles = new ArrayList<>();
             
             System.out.println("Select new role: ");
             IntStream.range(0, Roles.values().length).forEach(i -> System.out.println(i+1 + "- " + Roles.values()[i]));
             int roleIndex = handleUserListItemSelection(Roles.values().length);
             Role role = new Role(Roles.values()[roleIndex-1]);
-            user.setRole(role);
+            roles.add(role);
+            user.setRole(roles);
+         }
+
+         System.out.println();
+         System.out.println("=> Edit email ? (" + user.getEmail() + ") (y/Y: Yes, n/N: No)");
+         editEmail = handleUserYesNoSelection();
+         if(editEmail == 'y' || editEmail == 'Y'){
+            System.out.println("Enter new email: ");
+            String newEmail = handleEmail();
+            user.setEmail(newEmail);
+         }
+
+         System.out.println();
+         System.out.println("=> Edit password ? (" + user.getPassword() + ") (y/Y: Yes, n/N: No)");
+         editPassword = handleUserYesNoSelection();
+         if(editPassword == 'y' || editPassword == 'Y') {
+            System.out.println("Enter new password: ");
+            String newPassword = scan.nextLine();
+            user.setPassword(newPassword);
          }
 
          // check if something changed and print a msg
-        if(editAge == 'y' || editAge == 'Y' || editName == 'y' || editName == 'Y' || editRole == 'y' || editRole == 'Y') {
+        if(editAge == 'y' || editAge == 'Y' || editName == 'y' || editName == 'Y' || editRole == 'y' || editRole == 'Y' || editEmail == 'y' || editEmail == 'Y' || editPassword == 'y' || editPassword == 'Y') {
             System.out.println(Colors.ANSI_GREEN + "Book edited successfully" + Colors.ANSI_RESET);
         }else {
             System.out.println(Colors.ANSI_PURPLE + "Nothing has changed" + Colors.ANSI_RESET);
@@ -174,9 +202,6 @@ public class Accounts implements AccountsServices, UserInput {
         System.out.println(filtredUsers.get(input-1));
         System.out.println();
     }
-
-    
-
 
     
 }
